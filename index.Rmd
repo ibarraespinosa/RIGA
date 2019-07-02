@@ -1,5 +1,5 @@
 --- 
-title: "R: from basics to not so basic"
+title: "R：从基础到不太基础 - R: from basics to not so basic"
 author: "Sergio Ibarra-Espinosa"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site

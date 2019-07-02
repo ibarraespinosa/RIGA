@@ -1,4 +1,4 @@
-# Excel, my old friend 
+# Excel，我的老朋友 - Excel, my old friend 
 
 ## Spreadsheets
 
@@ -29,8 +29,39 @@ Export it to .CSV
 Open the .CSV file using Block Notes
 
 
-## Importing into R
+## 将数据导入R - Importing data into R
 
+### 阅读Excel - Reading Excel
+
+```{r}
+library(readxl)
+df <- read_xlsx("data/china_cities_20190413.xlsx")
+names(df)
+head(df)
+```
+
+
+### 使用基础 - Using base
+
+```{r}
+df <- read.csv("data/china_cities_20190413.csv")
+names(df)
+```
+
+
+### 使用data.table - Using data.table
+
+data.table比python，julia，spark和dask更快
+
+data.table is faster than python, julia, spark and dask
+
+**https://h2oai.github.io/db-benchmark/**
+
+```{r}
+library(data.table)
+df <- fread("data/china_cities_20190413.csv")
+df
+```
 
 Here is a review of existing methods.
 

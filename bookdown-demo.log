@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999991 (MiKTeX 2.9.7050 64-bit) (preloaded format=xelatex 2019.7.2)  2 JUL 2019 16:04
+This is XeTeX, Version 3.14159265-2.6-0.999991 (MiKTeX 2.9.7050 64-bit) (preloaded format=xelatex 2019.7.2)  2 JUL 2019 16:05
 entering extended mode
 **./bookdown-demo.tex
 (bookdown-demo.tex
@@ -150,8 +150,12 @@ Package fixltx2e Warning: fixltx2e is not required with releases after 2015
 
 Already applied: [0000/00/00] Old fixltx2e package on input line 53.
 )
+("C:\Users\MSI-PC\AppData\Local\Programs\MiKTeX 2.9\tex/xelatex/mathspec\mathsp
+ec.sty"
+Package: mathspec 2016/12/22 v0.2b LaTeX Package (Mathematics font selection fo
+r XeLaTeX)
 
-! LaTeX Error: File `mathspec.sty' not found.
+! LaTeX Error: File `etoolbox.sty' not found.
 
 Type X to quit or <RETURN> to proceed,
 or enter new name. (Default extension: sty)
@@ -160,13 +164,13 @@ Enter file name:
 ! Emergency stop.
 <read *> 
          
-l.12   \else
-            ^^M 
+l.7 \RequirePackage
+                   {amstext}^^M 
 Here is how much of TeX's memory you used:
- 1148 strings out of 427669
- 12590 string characters out of 3144750
+ 1154 strings out of 427669
+ 12742 string characters out of 3144750
  78262 words of memory out of 3000000
- 5255 multiletter control sequences out of 15000+200000
+ 5258 multiletter control sequences out of 15000+200000
  3648 words of font info for 15 fonts, out of 3000000 for 9000
  1348 hyphenation exceptions out of 8191
  27i,0n,27p,240b,40s stack positions out of 5000i,500n,10000p,200000b,50000s

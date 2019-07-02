@@ -71,7 +71,8 @@ knitr::include_graphics("fig/04.png")
 ## Install packages
 
 ```{r, eval=F}
-install.packages(c("ggplot2", "cptcity", "sf", "raster", "stars", "data.table"))
+install.packages(c("ggplot2", "cptcity", "sf", "raster", "stars", "data.table",
+                   "readr", "readxl"))
 ```
 
 
@@ -79,9 +80,17 @@ install.packages(c("ggplot2", "cptcity", "sf", "raster", "stars", "data.table"))
 
 ## Get the data
 
-```{r, eval=F}
-install.packages(c("ggplot2", "cptcity", "sf", "raster", "stars", "data.table"))
+```{r eval = FALSE}
+dir.create("data")
+download.file(
+  url = "https://github.com/ibarraespinosa/RIGA/raw/master/data/china_cities_20190413.xlsx", 
+  destfile = "data/china_cities_20190413.xlsx")
 ```
+
+
+Download all the files from this link
+
+https://github.com/ibarraespinosa/RIGA/tree/master/data
 
 
 ## Learn more
