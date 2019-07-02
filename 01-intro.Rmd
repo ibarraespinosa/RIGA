@@ -72,7 +72,7 @@ knitr::include_graphics("fig/04.png")
 
 ```{r, eval=F}
 install.packages(c("ggplot2", "cptcity", "sf", "raster", "stars", "data.table",
-                   "readr", "readxl"))
+                   "readr", "readxl", "lubridate"))
 ```
 
 

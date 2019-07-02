@@ -29,15 +29,12 @@ Export it to .CSV
 Open the .CSV file using Block Notes
 
 
-## 将数据导入R - Importing data into R
 
 ### 阅读Excel - Reading Excel
 
 ```{r}
 library(readxl)
 df <- read_xlsx("data/china_cities_20190413.xlsx")
-names(df)
-head(df)
 ```
 
 
@@ -45,7 +42,6 @@ head(df)
 
 ```{r}
 df <- read.csv("data/china_cities_20190413.csv")
-names(df)
 ```
 
 
@@ -60,8 +56,76 @@ data.table is faster than python, julia, spark and dask
 ```{r}
 library(data.table)
 df <- fread("data/china_cities_20190413.csv")
-df
 ```
+
+
+**做（5分钟) - do (5 min)**
+```{r,eval = FALSE}
+head(df)
+tail(df)
+df$date
+df[, 1]
+df$hour
+df[, 2]
+df$date == df[, 1]
+df$type
+df$鍖椾含
+
+```
+
+现在，检查**唯一的**值 - Now, check **unique** values
+
+```{r}
+unique(df$type)
+```
+
+CHN 
+
+我们可以看到，我们需要过滤我们的数据。 让我们只选择值为'AQI`的列`type`。
+我们只选择日期，时间和第一个中文名称
+
+ENG
+
+As we can see, we need to filter our data. Let us select only the column `type` with value `AQI`.
+Let us select only the date, time and the first Chinese name
+
+```{r}
+df_aqi <- df[df$type == "AQI", c("date", "hour", "鍖椾含")]
+head(df_aqi)
+```
+
+
+CHN 
+
+现在，连接日期和小时来创建时间列
+
+ENG
+
+Now, concatenate date and hour to create a time column
+
+
+```{r}
+library(lubridate)
+unique(df_aqi$hour)
+df_aqi$Time <- ymd_h(paste(df_aqi$date, df_aqi$hour))
+
+```
+
+
+现在我们可以策划 - And now we can plot
+
+## Plots
+
+```{r}
+par(mfrow = c(2,2))
+plot(x = df_aqi$Time, y = df_aqi$鍖椾含)
+plot(x = df_aqi$Time, y = df_aqi$鍖椾含, type = "l")
+plot(x = df_aqi$Time, y = df_aqi$鍖椾含, type = "b", pch = 16)
+plot(x = df_aqi$Time, y = df_aqi$鍖椾含, type = "b", pch = 16,col = "red")
+par(mfrow = c(1,1))
+```
+
+
 
 Here is a review of existing methods.
 
