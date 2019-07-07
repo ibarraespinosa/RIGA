@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 4 Vectors and Spreadsheets | R：从基础到不太基础 - R: from basics to not so basic</title>
+  <meta name="description" content="From really basics to not so basic R course." />
+  <meta name="generator" content="bookdown 0.11 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 4 Vectors and Spreadsheets | R：从基础到不太基础 - R: from basics to not so basic" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="From really basics to not so basic R course." />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 4 Vectors and Spreadsheets | R：从基础到不太基础 - R: from basics to not so basic" />
+  
+  <meta name="twitter:description" content="From really basics to not so basic R course." />
+  
+
+<meta name="author" content="Sergio Ibarra-Espinosa" />
+
+
+<meta name="date" content="2019-07-07" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="intro.html">
+<link rel="next" href="methods.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Notes</a></li>
+<li class="chapter" data-level="2" data-path="prerequisites.html"><a href="prerequisites.html"><i class="fa fa-check"></i><b>2</b> Prerequisites</a></li>
+<li class="chapter" data-level="3" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>3</b> Introduction</a><ul>
+<li class="chapter" data-level="3.1" data-path="intro.html"><a href="intro.html#install-r"><i class="fa fa-check"></i><b>3.1</b> Install R</a></li>
+<li class="chapter" data-level="3.2" data-path="intro.html"><a href="intro.html#install-rstudio"><i class="fa fa-check"></i><b>3.2</b> Install Rstudio</a></li>
+<li class="chapter" data-level="3.3" data-path="intro.html"><a href="intro.html#install-packages"><i class="fa fa-check"></i><b>3.3</b> Install packages</a></li>
+<li class="chapter" data-level="3.4" data-path="intro.html"><a href="intro.html#get-the-data"><i class="fa fa-check"></i><b>3.4</b> Get the data</a></li>
+<li class="chapter" data-level="3.5" data-path="intro.html"><a href="intro.html#learn-more"><i class="fa fa-check"></i><b>3.5</b> Learn more</a></li>
+<li class="chapter" data-level="3.6" data-path="intro.html"><a href="intro.html#install-vscode-optional"><i class="fa fa-check"></i><b>3.6</b> Install VSCODE (optional)</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="vectors-and-spreadsheets.html"><a href="vectors-and-spreadsheets.html"><i class="fa fa-check"></i><b>4</b> Vectors and Spreadsheets</a><ul>
+<li class="chapter" data-level="4.1" data-path="vectors-and-spreadsheets.html"><a href="vectors-and-spreadsheets.html#excel---excel-my-old-friend"><i class="fa fa-check"></i><b>4.1</b> Excel，我的老朋友 - Excel, my old friend</a></li>
+<li class="chapter" data-level="4.2" data-path="vectors-and-spreadsheets.html"><a href="vectors-and-spreadsheets.html#inputs"><i class="fa fa-check"></i><b>4.2</b> 输入 - Inputs</a></li>
+<li class="chapter" data-level="4.3" data-path="vectors-and-spreadsheets.html"><a href="vectors-and-spreadsheets.html#objects"><i class="fa fa-check"></i><b>4.3</b> 对象 - Objects</a></li>
+<li class="chapter" data-level="4.4" data-path="vectors-and-spreadsheets.html"><a href="vectors-and-spreadsheets.html#vectors"><i class="fa fa-check"></i><b>4.4</b> Vectors</a></li>
+<li class="chapter" data-level="4.5" data-path="vectors-and-spreadsheets.html"><a href="vectors-and-spreadsheets.html#mixing-objects"><i class="fa fa-check"></i><b>4.5</b> 混合对象 - Mixing objects</a><ul>
+<li class="chapter" data-level="4.5.1" data-path="vectors-and-spreadsheets.html"><a href="vectors-and-spreadsheets.html#excel---reading-excel"><i class="fa fa-check"></i><b>4.5.1</b> 阅读Excel - Reading Excel</a></li>
+<li class="chapter" data-level="4.5.2" data-path="vectors-and-spreadsheets.html"><a href="vectors-and-spreadsheets.html#using-base"><i class="fa fa-check"></i><b>4.5.2</b> 使用基础 - Using base</a></li>
+<li class="chapter" data-level="4.5.3" data-path="vectors-and-spreadsheets.html"><a href="vectors-and-spreadsheets.html#data.table---using-data.table"><i class="fa fa-check"></i><b>4.5.3</b> 使用data.table - Using data.table</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="vectors-and-spreadsheets.html"><a href="vectors-and-spreadsheets.html#plots"><i class="fa fa-check"></i><b>4.6</b> Plots</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="methods.html"><a href="methods.html"><i class="fa fa-check"></i><b>5</b> Methods</a></li>
+<li class="chapter" data-level="6" data-path="applications.html"><a href="applications.html"><i class="fa fa-check"></i><b>6</b> Applications</a><ul>
+<li class="chapter" data-level="6.1" data-path="applications.html"><a href="applications.html#example-one"><i class="fa fa-check"></i><b>6.1</b> Example one</a></li>
+<li class="chapter" data-level="6.2" data-path="applications.html"><a href="applications.html#example-two"><i class="fa fa-check"></i><b>6.2</b> Example two</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="final-words.html"><a href="final-words.html"><i class="fa fa-check"></i><b>7</b> Final Words</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R：从基础到不太基础 - R: from basics to not so basic</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="vectors-and-spreadsheets" class="section level1">
+<h1><span class="header-section-number">Chapter 4</span> Vectors and Spreadsheets</h1>
+<div id="excel---excel-my-old-friend" class="section level2">
+<h2><span class="header-section-number">4.1</span> Excel，我的老朋友 - Excel, my old friend</h2>
+<div class="figure"><span id="fig:unnamed-chunk-10"></span>
+<img src="fig/07.png" alt="Libreoffice Calc with some Chinese data"  />
+<p class="caption">
+Figure 4.1: Libreoffice Calc with some Chinese data
+</p>
+</div>
+</div>
+<div id="inputs" class="section level2">
+<h2><span class="header-section-number">4.2</span> 输入 - Inputs</h2>
+<pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="dv">1</span>
+<span class="kw">print</span>(x)</code></pre>
+<pre><code>## [1] 1</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">x</code></pre>
+<pre><code>## [1] 1</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">hello &lt;-<span class="st"> &quot;你好&quot;</span>
+hello</code></pre>
+<pre><code>## [1] &quot;你好&quot;</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">d &lt;-<span class="st"> </span><span class="ot">TRUE</span>
+d</code></pre>
+<pre><code>## [1] TRUE</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">e &lt;-<span class="st"> </span><span class="dv">5</span> <span class="op">+</span><span class="st"> </span>2i
+e</code></pre>
+<pre><code>## [1] 5+2i</code></pre>
+<p>怎么了？ - What is happning?</p>
+</div>
+<div id="objects" class="section level2">
+<h2><span class="header-section-number">4.3</span> 对象 - Objects</h2>
+<p>R有5个基本类- R has 5 basic classes</p>
+<ul>
+<li>character</li>
+<li>numeric</li>
+<li>integer</li>
+<li>complex</li>
+<li>logical (TRUE or FALSE) or (T or F)</li>
+</ul>
+<p>你可以检查这样的类： - You can check the class like this:</p>
+<pre class="sourceCode r"><code class="sourceCode r">a &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span>
+a</code></pre>
+<pre><code>##  [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(a)</code></pre>
+<pre><code>## [1] &quot;integer&quot;</code></pre>
+<p><strong>做（5分钟）</strong>
+检查提到的对象的类</p>
+<p><strong>do (5 min)</strong>
+Check the classes of the mentioned objects</p>
+</div>
+<div id="vectors" class="section level2">
+<h2><span class="header-section-number">4.4</span> Vectors</h2>
+<p>使用函数<code>c()</code>我们创建了将事物连接在一起的向量 - Using the function <code>c()</code>we create vectors concatenating things together</p>
+<pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">0.5</span>, <span class="fl">0.6</span>)
+x</code></pre>
+<pre><code>## [1] 0.5 0.6</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">FALSE</span>)
+x</code></pre>
+<pre><code>## [1]  TRUE FALSE</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">c</span>(T, F)
+x</code></pre>
+<pre><code>## [1]  TRUE FALSE</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="st">&quot;c&quot;</span>)
+x</code></pre>
+<pre><code>## [1] &quot;a&quot; &quot;b&quot; &quot;c&quot;</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="dv">9</span><span class="op">:</span><span class="dv">29</span>
+x</code></pre>
+<pre><code>##  [1]  9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span><span class="op">+</span>0i, <span class="dv">2</span><span class="op">+</span>4i)
+x</code></pre>
+<pre><code>## [1] 1+0i 2+4i</code></pre>
+</div>
+<div id="mixing-objects" class="section level2">
+<h2><span class="header-section-number">4.5</span> 混合对象 - Mixing objects</h2>
+<p>如果混合对象会发生什么？ - What happens if you mix objects???</p>
+<pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">0.5</span>, <span class="fl">0.6</span>)
+y &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="st">&quot;c&quot;</span>)
+z &lt;-<span class="st"> </span><span class="kw">c</span>(x,y)
+<span class="kw">class</span>(z)</code></pre>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">y &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">1.7</span>, <span class="st">&quot;a&quot;</span>)
+y &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="dv">2</span>)
+y &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="ot">TRUE</span>)</code></pre>
+<p><strong>做（5分钟）</strong>
+检查提到的对象的类</p>
+<p><strong>do (5 min)</strong>
+Check the classes of the mentioned objects</p>
+<div id="excel---reading-excel" class="section level3">
+<h3><span class="header-section-number">4.5.1</span> 阅读Excel - Reading Excel</h3>
+<p>CHN</p>
+<p>有时我们必须使用电子表格（Excel）分析数据。 如果数据很小且分析很简单，则没有问题。 但是什么
+如果我们有数百万的混合观察会发生？ 使用Excel可能不是一个好主意。</p>
+<p><strong>做（5分钟）</strong>
+打开文件china_cities_20190413.xlsx
+检查数据
+将其导出为.CSV
+使用Block Notes打开.CSV文件</p>
+<p>ENG</p>
+<p>Sometimes we must analize data using spreadsheets (Excel). If the data is small and the analyses is simple, there are no problems. But what
+happens if we have millions of mixed observations? Using Excel might be not a good idea.</p>
+<p><strong>do (5 min)</strong>
+Open the file china_cities_20190413.xlsx
+Check the data
+Export it to .CSV
+Open the .CSV file using Block Notes</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(readxl)
+df &lt;-<span class="st"> </span><span class="kw">read_xlsx</span>(<span class="st">&quot;data/china_cities_20190413.xlsx&quot;</span>)</code></pre>
+</div>
+<div id="using-base" class="section level3">
+<h3><span class="header-section-number">4.5.2</span> 使用基础 - Using base</h3>
+<pre class="sourceCode r"><code class="sourceCode r">df1 &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/china_cities_20190413.csv&quot;</span>, <span class="dt">h =</span> T)
+df2 &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&quot;data/china_cities_20190413.txt&quot;</span>, <span class="dt">h =</span> T)</code></pre>
+</div>
+<div id="data.table---using-data.table" class="section level3">
+<h3><span class="header-section-number">4.5.3</span> 使用data.table - Using data.table</h3>
+<p>data.table比python，julia，spark和dask更快</p>
+<p>data.table is faster than python, julia, spark and dask</p>
+<p><strong><a href="https://h2oai.github.io/db-benchmark/" class="uri">https://h2oai.github.io/db-benchmark/</a></strong></p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(data.table)
+df &lt;-<span class="st"> </span><span class="kw">fread</span>(<span class="st">&quot;data/china_cities_20190413.csv&quot;</span>)</code></pre>
+<p><strong>做（5分钟) - do (5 min)</strong></p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(df)
+<span class="kw">tail</span>(df)
+df<span class="op">$</span>date
+df[, <span class="dv">1</span>]
+df<span class="op">$</span>hour
+df[, <span class="dv">2</span>]
+df<span class="op">$</span>date <span class="op">==</span><span class="st"> </span>df[, <span class="dv">1</span>]
+df<span class="op">$</span>type
+df<span class="op">$</span>鍖椾含</code></pre>
+<p>现在，检查<strong>唯一的</strong>值 - Now, check <strong>unique</strong> values</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">unique</span>(df<span class="op">$</span>type)</code></pre>
+<pre><code>##  [1] &quot;AQI&quot;       &quot;PM2.5&quot;     &quot;PM2.5_24h&quot; &quot;PM10&quot;      &quot;PM10_24h&quot; 
+##  [6] &quot;SO2&quot;       &quot;SO2_24h&quot;   &quot;NO2&quot;       &quot;NO2_24h&quot;   &quot;O3&quot;       
+## [11] &quot;O3_24h&quot;    &quot;O3_8h&quot;     &quot;O3_8h_24h&quot; &quot;CO&quot;        &quot;CO_24h&quot;</code></pre>
+<p>CHN</p>
+<p>我们可以看到，我们需要过滤我们的数据。 让我们只选择值为’AQI<code>的列</code>type`。
+我们只选择日期，时间和第一个中文名称</p>
+<p>ENG</p>
+<p>As we can see, we need to filter our data. Let us select only the column <code>type</code> with value <code>AQI</code>.
+Let us select only the date, time and the first Chinese name</p>
+<pre class="sourceCode r"><code class="sourceCode r">df_aqi &lt;-<span class="st"> </span>df[df<span class="op">$</span>type <span class="op">==</span><span class="st"> &quot;AQI&quot;</span>, <span class="kw">c</span>(<span class="st">&quot;date&quot;</span>, <span class="st">&quot;hour&quot;</span>, <span class="st">&quot;鍖椾含&quot;</span>)]
+<span class="kw">head</span>(df_aqi)</code></pre>
+<pre><code>##        date hour 鍖椾含
+## 1: 20190413    0    115
+## 2: 20190413    1    120
+## 3: 20190413    2    122
+## 4: 20190413    3    126
+## 5: 20190413    4    130
+## 6: 20190413    5    133</code></pre>
+<p>CHN</p>
+<p>现在，连接日期和小时来创建时间列</p>
+<p>ENG</p>
+<p>Now, concatenate date and hour to create a time column</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(lubridate)</code></pre>
+<pre><code>## 
+## Attaching package: &#39;lubridate&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:data.table&#39;:
+## 
+##     hour, isoweek, mday, minute, month, quarter, second, wday,
+##     week, yday, year</code></pre>
+<pre><code>## The following object is masked from &#39;package:base&#39;:
+## 
+##     date</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">unique</span>(df_aqi<span class="op">$</span>hour)</code></pre>
+<pre><code>##  [1]  0  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 21 22
+## [24] 23</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">df_aqi<span class="op">$</span>Time &lt;-<span class="st"> </span><span class="kw">ymd_h</span>(<span class="kw">paste</span>(df_aqi<span class="op">$</span>date, df_aqi<span class="op">$</span>hour))</code></pre>
+<p>现在我们可以策划 - And now we can plot</p>
+</div>
+</div>
+<div id="plots" class="section level2">
+<h2><span class="header-section-number">4.6</span> Plots</h2>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))
+<span class="kw">plot</span>(<span class="dt">x =</span> df_aqi<span class="op">$</span>Time, <span class="dt">y =</span> df_aqi<span class="op">$</span>鍖椾含)
+<span class="kw">plot</span>(<span class="dt">x =</span> df_aqi<span class="op">$</span>Time, <span class="dt">y =</span> df_aqi<span class="op">$</span>鍖椾含, <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>)
+<span class="kw">plot</span>(<span class="dt">x =</span> df_aqi<span class="op">$</span>Time, <span class="dt">y =</span> df_aqi<span class="op">$</span>鍖椾含, <span class="dt">type =</span> <span class="st">&quot;b&quot;</span>, <span class="dt">pch =</span> <span class="dv">16</span>)
+<span class="kw">plot</span>(<span class="dt">x =</span> df_aqi<span class="op">$</span>Time, <span class="dt">y =</span> df_aqi<span class="op">$</span>鍖椾含, <span class="dt">type =</span> <span class="st">&quot;b&quot;</span>, <span class="dt">pch =</span> <span class="dv">16</span>,<span class="dt">col =</span> <span class="st">&quot;red&quot;</span>)</code></pre>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</code></pre>
+<p>Here is a review of existing methods.</p>
+<p>You can label chapter and section titles using <code>{#label}</code> after them, e.g., we can reference Chapter <a href="intro.html#intro">3</a>. If you do not manually label them, there will be automatic labels anyway, e.g., Chapter <a href="methods.html#methods">5</a>.</p>
+<p>Figures and tables with captions will be placed in <code>figure</code> and <code>table</code> environments, respectively.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mar =</span> <span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">4</span>, <span class="fl">.1</span>, <span class="fl">.1</span>))
+<span class="kw">plot</span>(pressure, <span class="dt">type =</span> <span class="st">&#39;b&#39;</span>, <span class="dt">pch =</span> <span class="dv">19</span>)</code></pre>
+<div class="figure" style="text-align: center"><span id="fig:nice-fig"></span>
+<img src="bookdown-demo_files/figure-html/nice-fig-1.png" alt="Here is a nice figure!" width="80%" />
+<p class="caption">
+Figure 4.2: Here is a nice figure!
+</p>
+</div>
+<p>Reference a figure by its code chunk label with the <code>fig:</code> prefix, e.g., see Figure <a href="vectors-and-spreadsheets.html#fig:nice-fig">4.2</a>. Similarly, you can reference tables generated from <code>knitr::kable()</code>, e.g., see Table <a href="vectors-and-spreadsheets.html#tab:nice-tab">4.1</a>.</p>
+<pre class="sourceCode r"><code class="sourceCode r">knitr<span class="op">::</span><span class="kw">kable</span>(
+  <span class="kw">head</span>(iris, <span class="dv">20</span>), <span class="dt">caption =</span> <span class="st">&#39;Here is a nice table!&#39;</span>,
+  <span class="dt">booktabs =</span> <span class="ot">TRUE</span>
+)</code></pre>
+<table>
+<caption><span id="tab:nice-tab">Table 4.1: </span>Here is a nice table!</caption>
+<thead>
+<tr class="header">
+<th align="right">Sepal.Length</th>
+<th align="right">Sepal.Width</th>
+<th align="right">Petal.Length</th>
+<th align="right">Petal.Width</th>
+<th align="left">Species</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">5.1</td>
+<td align="right">3.5</td>
+<td align="right">1.4</td>
+<td align="right">0.2</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="even">
+<td align="right">4.9</td>
+<td align="right">3.0</td>
+<td align="right">1.4</td>
+<td align="right">0.2</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="odd">
+<td align="right">4.7</td>
+<td align="right">3.2</td>
+<td align="right">1.3</td>
+<td align="right">0.2</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="even">
+<td align="right">4.6</td>
+<td align="right">3.1</td>
+<td align="right">1.5</td>
+<td align="right">0.2</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="odd">
+<td align="right">5.0</td>
+<td align="right">3.6</td>
+<td align="right">1.4</td>
+<td align="right">0.2</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="even">
+<td align="right">5.4</td>
+<td align="right">3.9</td>
+<td align="right">1.7</td>
+<td align="right">0.4</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="odd">
+<td align="right">4.6</td>
+<td align="right">3.4</td>
+<td align="right">1.4</td>
+<td align="right">0.3</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="even">
+<td align="right">5.0</td>
+<td align="right">3.4</td>
+<td align="right">1.5</td>
+<td align="right">0.2</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="odd">
+<td align="right">4.4</td>
+<td align="right">2.9</td>
+<td align="right">1.4</td>
+<td align="right">0.2</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="even">
+<td align="right">4.9</td>
+<td align="right">3.1</td>
+<td align="right">1.5</td>
+<td align="right">0.1</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="odd">
+<td align="right">5.4</td>
+<td align="right">3.7</td>
+<td align="right">1.5</td>
+<td align="right">0.2</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="even">
+<td align="right">4.8</td>
+<td align="right">3.4</td>
+<td align="right">1.6</td>
+<td align="right">0.2</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="odd">
+<td align="right">4.8</td>
+<td align="right">3.0</td>
+<td align="right">1.4</td>
+<td align="right">0.1</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="even">
+<td align="right">4.3</td>
+<td align="right">3.0</td>
+<td align="right">1.1</td>
+<td align="right">0.1</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="odd">
+<td align="right">5.8</td>
+<td align="right">4.0</td>
+<td align="right">1.2</td>
+<td align="right">0.2</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="even">
+<td align="right">5.7</td>
+<td align="right">4.4</td>
+<td align="right">1.5</td>
+<td align="right">0.4</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="odd">
+<td align="right">5.4</td>
+<td align="right">3.9</td>
+<td align="right">1.3</td>
+<td align="right">0.4</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="even">
+<td align="right">5.1</td>
+<td align="right">3.5</td>
+<td align="right">1.4</td>
+<td align="right">0.3</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="odd">
+<td align="right">5.7</td>
+<td align="right">3.8</td>
+<td align="right">1.7</td>
+<td align="right">0.3</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="even">
+<td align="right">5.1</td>
+<td align="right">3.8</td>
+<td align="right">1.5</td>
+<td align="right">0.3</td>
+<td align="left">setosa</td>
+</tr>
+</tbody>
+</table>
+<p>You can write citations, too. For example, we are using the <strong>bookdown</strong> package <span class="citation">(Xie <a href="#ref-R-bookdown">2019</a>)</span> in this sample book, which was built on top of R Markdown and <strong>knitr</strong> <span class="citation">(Xie <a href="#ref-xie2015">2015</a>)</span>.</p>
+
+</div>
+</div>
+<h3>References</h3>
+<div id="refs" class="references">
+<div id="ref-xie2015">
+<p>Xie, Yihui. 2015. <em>Dynamic Documents with R and Knitr</em>. 2nd ed. Boca Raton, Florida: Chapman; Hall/CRC. <a href="http://yihui.name/knitr/">http://yihui.name/knitr/</a>.</p>
+</div>
+<div id="ref-R-bookdown">
+<p>Xie, Yihui. 2019. <em>Bookdown: Authoring Books and Technical Documents with R Markdown</em>. <a href="https://CRAN.R-project.org/package=bookdown">https://CRAN.R-project.org/package=bookdown</a>.</p>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="intro.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="methods.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/02-verybasic.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": ["bookdown-demo.pdf", "bookdown-demo.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

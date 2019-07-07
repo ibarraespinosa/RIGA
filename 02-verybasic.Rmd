@@ -1,10 +1,98 @@
-# Excel，我的老朋友 - Excel, my old friend 
+# Vectors and Spreadsheets
 
-## Spreadsheets
+##  Excel，我的老朋友 - Excel, my old friend 
 
 ```{r, echo = F, fig.cap="Libreoffice Calc with some Chinese data"}
 knitr::include_graphics("fig/07.png")
 ```
+## 输入 - Inputs
+
+```{r, eval = F}
+x <- 1
+print(x)
+x
+hello <- "你好"
+hello
+d <- TRUE
+d
+e <- 5 + 2i
+e
+```
+
+怎么了？ - What is happning?
+
+## 对象 - Objects
+
+R有5个基本类-  R has 5 basic classes
+ 
+- character
+- numeric
+- integer
+- complex
+- logical (TRUE or FALSE) or (T or F)
+
+你可以检查这样的类： - You can check the class like this:
+
+```{r}
+a <- 1:10
+a
+class(a)
+```
+
+
+**做（5分钟）**
+检查提到的对象的类
+
+**do (5 min)**
+Check the classes of the mentioned objects
+
+
+## Vectors
+
+使用函数`c()`我们创建了将事物连接在一起的向量 - Using the function `c()`we create vectors concatenating things together
+
+```{r, eval = F}
+x <- c(0.5, 0.6)
+x
+x <- c(TRUE, FALSE)
+x
+x <- c(T, F)
+x
+x <- c("a", "b", "c")
+x
+x <- 9:29
+x
+x <- c(1+0i, 2+4i)
+x
+```
+
+## 混合对象 - Mixing objects
+
+如果混合对象会发生什么？ - What happens if you mix objects???
+
+```{r}
+x <- c(0.5, 0.6)
+y <- c("a", "b", "c")
+z <- c(x,y)
+class(z)
+
+```
+
+
+```{r}
+y <- c(1.7, "a")
+y <- c(TRUE, 2)
+y <- c("a", TRUE)
+```
+
+
+**做（5分钟）**
+检查提到的对象的类
+
+**do (5 min)**
+Check the classes of the mentioned objects
+
+### 阅读Excel - Reading Excel
 
 CHN
 
@@ -14,7 +102,7 @@ CHN
 **做（5分钟）**
 打开文件china_cities_20190413.xlsx
 检查数据
-将其导出为.CSV
+将其导出为.CSV .txt
 使用Block Notes打开.CSV文件
 
 ENG
@@ -25,12 +113,9 @@ happens if we have millions of mixed observations? Using Excel might be not a go
 **do (5 min)**
 Open the file china_cities_20190413.xlsx
 Check the data
-Export it to .CSV
+Export it to .CSV or .txt
 Open the .CSV file using Block Notes
 
-
-
-### 阅读Excel - Reading Excel
 
 ```{r}
 library(readxl)
@@ -41,7 +126,8 @@ df <- read_xlsx("data/china_cities_20190413.xlsx")
 ### 使用基础 - Using base
 
 ```{r}
-df <- read.csv("data/china_cities_20190413.csv")
+df <- read.csv("data/china_cities_20190413.csv", h = T, )
+df2 <- read.table("data/china_cities_20190413.txt", h = T)
 ```
 
 

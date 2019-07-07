@@ -23,7 +23,7 @@
 }{}
 \usepackage{hyperref}
 \hypersetup{unicode=true,
-            pdftitle={R: from basics to not so basic},
+            pdftitle={R：从基础到不太基础 - R: from basics to not so basic},
             pdfauthor={Sergio Ibarra-Espinosa},
             pdfborder={0 0 0},
             breaklinks=true}
@@ -116,7 +116,7 @@
 
 \setlength{\droptitle}{-2em}
 
-  \title{R: from basics to not so basic}
+  \title{R：从基础到不太基础 - R: from basics to not so basic}
     \pretitle{\vspace{\droptitle}\centering\huge}
   \posttitle{\par}
     \author{Sergio Ibarra-Espinosa}
@@ -124,7 +124,7 @@
   \postauthor{\par}
       \predate{\centering\large\emph}
   \postdate{\par}
-    \date{2019-07-02}
+    \date{2019-07-07}
 
 \usepackage{booktabs}
 \usepackage{amsthm}
@@ -169,6 +169,8 @@ This course is designed for people who never used R and relies on the colorful f
 This course is also for Linux people.
 If you work with spatiotemporal data such as vectors (shapefiles) and raster or gridded (.Tiff, NetCDF).
 As I never saw anyone using other than Windows and occasionally some Mac, I`m not expecting any change to /etc/sources.list to keep updated R or anything.
+
+I took some examples from R Programming for Data Science (Roger D. Peng, 2016) \url{https://bookdown.org/rdpeng/rprogdatascience/}
 
 \hypertarget{intro}{%
 \chapter{Introduction}\label{intro}}
@@ -244,7 +246,8 @@ Go into \url{https://www.rstudio.com}, click on Rstudio Download and click on FR
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{install.packages}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\StringTok{"ggplot2"}\NormalTok{, }\StringTok{"cptcity"}\NormalTok{, }\StringTok{"sf"}\NormalTok{, }\StringTok{"raster"}\NormalTok{, }\StringTok{"stars"}\NormalTok{, }\StringTok{"data.table"}\NormalTok{))}
+\KeywordTok{install.packages}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\StringTok{"ggplot2"}\NormalTok{, }\StringTok{"cptcity"}\NormalTok{, }\StringTok{"sf"}\NormalTok{, }\StringTok{"raster"}\NormalTok{, }\StringTok{"stars"}\NormalTok{, }\StringTok{"data.table"}\NormalTok{,}
+                   \StringTok{"readr"}\NormalTok{, }\StringTok{"readxl"}\NormalTok{, }\StringTok{"lubridate"}\NormalTok{))}
 \end{Highlighting}
 \end{Shaded}
 
@@ -253,9 +256,16 @@ Go into \url{https://www.rstudio.com}, click on Rstudio Download and click on FR
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{install.packages}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\StringTok{"ggplot2"}\NormalTok{, }\StringTok{"cptcity"}\NormalTok{, }\StringTok{"sf"}\NormalTok{, }\StringTok{"raster"}\NormalTok{, }\StringTok{"stars"}\NormalTok{, }\StringTok{"data.table"}\NormalTok{))}
+\KeywordTok{dir.create}\NormalTok{(}\StringTok{"data"}\NormalTok{)}
+\KeywordTok{download.file}\NormalTok{(}
+  \DataTypeTok{url =} \StringTok{"https://github.com/ibarraespinosa/RIGA/raw/master/data/china_cities_20190413.xlsx"}\NormalTok{, }
+  \DataTypeTok{destfile =} \StringTok{"data/china_cities_20190413.xlsx"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
+
+Download all the files from this link
+
+\url{https://github.com/ibarraespinosa/RIGA/tree/master/data}
 
 \hypertarget{learn-more}{%
 \section{Learn more}\label{learn-more}}
@@ -287,17 +297,224 @@ Then, click on settings, extensions, r and put the path where you installed R
 
 \includegraphics{fig/06.png}
 
-\hypertarget{excel-my-old-friend}{%
-\chapter{Excel, my old friend}\label{excel-my-old-friend}}
+\hypertarget{vectors-and-spreadsheets}{%
+\chapter{Vectors and Spreadsheets}\label{vectors-and-spreadsheets}}
 
-\hypertarget{spreadsheets}{%
-\section{Spreadsheets}\label{spreadsheets}}
+\hypertarget{excel---excel-my-old-friend}{%
+\section{Excel，我的老朋友 - Excel, my old friend}\label{excel---excel-my-old-friend}}
 
-\begin{figure}
-\centering
 \includegraphics{fig/07.png}
-\caption{\label{fig:unnamed-chunk-10}Libreoffice Calc with some Chinese data}
-\end{figure}
+\#\# 输入 - Inputs
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x <-}\StringTok{ }\DecValTok{1}
+\KeywordTok{print}\NormalTok{(x)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{hello <-}\StringTok{ "你好"}
+\NormalTok{hello}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "你好"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{d <-}\StringTok{ }\OtherTok{TRUE}
+\NormalTok{d}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] TRUE
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{e <-}\StringTok{ }\DecValTok{5} \OperatorTok{+}\StringTok{ }\NormalTok{2i}
+\NormalTok{e}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 5+2i
+\end{verbatim}
+
+怎么了？ - What is happning?
+
+\hypertarget{objects}{%
+\section{对象 - Objects}\label{objects}}
+
+R有5个基本类- R has 5 basic classes
+
+\begin{itemize}
+\tightlist
+\item
+  character
+\item
+  numeric
+\item
+  integer
+\item
+  complex
+\item
+  logical (TRUE or FALSE) or (T or F)
+\end{itemize}
+
+你可以检查这样的类： - You can check the class like this:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{a <-}\StringTok{ }\DecValTok{1}\OperatorTok{:}\DecValTok{10}
+\NormalTok{a}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1]  1  2  3  4  5  6  7  8  9 10
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{class}\NormalTok{(a)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "integer"
+\end{verbatim}
+
+\textbf{做（5分钟）}
+检查提到的对象的类
+
+\textbf{do (5 min)}
+Check the classes of the mentioned objects
+
+\hypertarget{vectors}{%
+\section{Vectors}\label{vectors}}
+
+使用函数\texttt{c()}我们创建了将事物连接在一起的向量 - Using the function \texttt{c()}we create vectors concatenating things together
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\FloatTok{0.5}\NormalTok{, }\FloatTok{0.6}\NormalTok{)}
+\NormalTok{x}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.5 0.6
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\OtherTok{TRUE}\NormalTok{, }\OtherTok{FALSE}\NormalTok{)}
+\NormalTok{x}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1]  TRUE FALSE
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x <-}\StringTok{ }\KeywordTok{c}\NormalTok{(T, F)}
+\NormalTok{x}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1]  TRUE FALSE
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"a"}\NormalTok{, }\StringTok{"b"}\NormalTok{, }\StringTok{"c"}\NormalTok{)}
+\NormalTok{x}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "a" "b" "c"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x <-}\StringTok{ }\DecValTok{9}\OperatorTok{:}\DecValTok{29}
+\NormalTok{x}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1]  9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{1}\OperatorTok{+}\NormalTok{0i, }\DecValTok{2}\OperatorTok{+}\NormalTok{4i)}
+\NormalTok{x}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1+0i 2+4i
+\end{verbatim}
+
+\hypertarget{mixing-objects}{%
+\section{混合对象 - Mixing objects}\label{mixing-objects}}
+
+如果混合对象会发生什么？ - What happens if you mix objects???
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\FloatTok{0.5}\NormalTok{, }\FloatTok{0.6}\NormalTok{)}
+\NormalTok{y <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"a"}\NormalTok{, }\StringTok{"b"}\NormalTok{, }\StringTok{"c"}\NormalTok{)}
+\NormalTok{z <-}\StringTok{ }\KeywordTok{c}\NormalTok{(x,y)}
+\KeywordTok{class}\NormalTok{(z)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "character"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{y <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\FloatTok{1.7}\NormalTok{, }\StringTok{"a"}\NormalTok{)}
+\NormalTok{y <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\OtherTok{TRUE}\NormalTok{, }\DecValTok{2}\NormalTok{)}
+\NormalTok{y <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"a"}\NormalTok{, }\OtherTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{做（5分钟）}
+检查提到的对象的类
+
+\textbf{do (5 min)}
+Check the classes of the mentioned objects
+
+\hypertarget{excel---reading-excel}{%
+\subsection{阅读Excel - Reading Excel}\label{excel---reading-excel}}
 
 CHN
 
@@ -321,8 +538,339 @@ Check the data
 Export it to .CSV
 Open the .CSV file using Block Notes
 
-\hypertarget{importing-into-r}{%
-\section{Importing into R}\label{importing-into-r}}
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(readxl)}
+\NormalTok{df <-}\StringTok{ }\KeywordTok{read_xlsx}\NormalTok{(}\StringTok{"data/china_cities_20190413.xlsx"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{using-base}{%
+\subsection{使用基础 - Using base}\label{using-base}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df1 <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"data/china_cities_20190413.csv"}\NormalTok{, }\DataTypeTok{h =}\NormalTok{ T)}
+\NormalTok{df2 <-}\StringTok{ }\KeywordTok{read.table}\NormalTok{(}\StringTok{"data/china_cities_20190413.txt"}\NormalTok{, }\DataTypeTok{h =}\NormalTok{ T)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{data.table---using-data.table}{%
+\subsection{使用data.table - Using data.table}\label{data.table---using-data.table}}
+
+data.table比python，julia，spark和dask更快
+
+data.table is faster than python, julia, spark and dask
+
+\textbf{\url{https://h2oai.github.io/db-benchmark/}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(data.table)}
+\NormalTok{df <-}\StringTok{ }\KeywordTok{fread}\NormalTok{(}\StringTok{"data/china_cities_20190413.csv"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{做（5分钟) - do (5 min)}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{head}\NormalTok{(df)}
+\KeywordTok{tail}\NormalTok{(df)}
+\NormalTok{df}\OperatorTok{$}\NormalTok{date}
+\NormalTok{df[, }\DecValTok{1}\NormalTok{]}
+\NormalTok{df}\OperatorTok{$}\NormalTok{hour}
+\NormalTok{df[, }\DecValTok{2}\NormalTok{]}
+\NormalTok{df}\OperatorTok{$}\NormalTok{date }\OperatorTok{==}\StringTok{ }\NormalTok{df[, }\DecValTok{1}\NormalTok{]}
+\NormalTok{df}\OperatorTok{$}\NormalTok{type}
+\NormalTok{df}\OperatorTok{$}\NormalTok{鍖椾含}
+\end{Highlighting}
+\end{Shaded}
+
+现在，检查\textbf{唯一的}值 - Now, check \textbf{unique} values
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{unique}\NormalTok{(df}\OperatorTok{$}\NormalTok{type)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1] "AQI"       "PM2.5"     "PM2.5_24h" "PM10"      "PM10_24h" 
+##  [6] "SO2"       "SO2_24h"   "NO2"       "NO2_24h"   "O3"       
+## [11] "O3_24h"    "O3_8h"     "O3_8h_24h" "CO"        "CO_24h"
+\end{verbatim}
+
+CHN
+
+我们可以看到，我们需要过滤我们的数据。 让我们只选择值为'AQI\texttt{的列}type`。
+我们只选择日期，时间和第一个中文名称
+
+ENG
+
+As we can see, we need to filter our data. Let us select only the column \texttt{type} with value \texttt{AQI}.
+Let us select only the date, time and the first Chinese name
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df_aqi <-}\StringTok{ }\NormalTok{df[df}\OperatorTok{$}\NormalTok{type }\OperatorTok{==}\StringTok{ "AQI"}\NormalTok{, }\KeywordTok{c}\NormalTok{(}\StringTok{"date"}\NormalTok{, }\StringTok{"hour"}\NormalTok{, }\StringTok{"鍖椾含"}\NormalTok{)]}
+\KeywordTok{head}\NormalTok{(df_aqi)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##        date hour 鍖椾含
+## 1: 20190413    0    115
+## 2: 20190413    1    120
+## 3: 20190413    2    122
+## 4: 20190413    3    126
+## 5: 20190413    4    130
+## 6: 20190413    5    133
+\end{verbatim}
+
+CHN
+
+现在，连接日期和小时来创建时间列
+
+ENG
+
+Now, concatenate date and hour to create a time column
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(lubridate)}
+\KeywordTok{unique}\NormalTok{(df_aqi}\OperatorTok{$}\NormalTok{hour)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1]  0  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 21 22
+## [24] 23
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df_aqi}\OperatorTok{$}\NormalTok{Time <-}\StringTok{ }\KeywordTok{ymd_h}\NormalTok{(}\KeywordTok{paste}\NormalTok{(df_aqi}\OperatorTok{$}\NormalTok{date, df_aqi}\OperatorTok{$}\NormalTok{hour))}
+\end{Highlighting}
+\end{Shaded}
+
+现在我们可以策划 - And now we can plot
+
+\hypertarget{plots}{%
+\section{Plots}\label{plots}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mfrow =} \KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{2}\NormalTok{))}
+\KeywordTok{plot}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ df_aqi}\OperatorTok{$}\NormalTok{Time, }\DataTypeTok{y =}\NormalTok{ df_aqi}\OperatorTok{$}\NormalTok{鍖椾含)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning in title(...): 'mbcsToSbcs'里转换'df_aqi$閸栨ぞ鍚�'出错：<e9>代替了
+## dot
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in title(...): 'mbcsToSbcs'里转换'df_aqi$閸栨ぞ鍚�'出错：<8d>代替了
+## dot
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in title(...): 'mbcsToSbcs'里转换'df_aqi$閸栨ぞ鍚�'出错：<96>代替了
+## dot
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in title(...): 'mbcsToSbcs'里转换'df_aqi$閸栨ぞ鍚�'出错：<e6>代替了
+## dot
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in title(...): 'mbcsToSbcs'里转换'df_aqi$閸栨ぞ鍚�'出错：<a4>代替了
+## dot
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in title(...): 'mbcsToSbcs'里转换'df_aqi$閸栨ぞ鍚�'出错：<be>代替了
+## dot
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in title(...): 'mbcsToSbcs'里转换'df_aqi$閸栨ぞ鍚�'出错：<e5>代替了
+## dot
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in title(...): 'mbcsToSbcs'里转换'df_aqi$閸栨ぞ鍚�'出错：<90>代替了
+## dot
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in title(...): 'mbcsToSbcs'里转换'df_aqi$閸栨ぞ鍚�'出错：<ab>代替了
+## dot
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ df_aqi}\OperatorTok{$}\NormalTok{Time, }\DataTypeTok{y =}\NormalTok{ df_aqi}\OperatorTok{$}\NormalTok{鍖椾含, }\DataTypeTok{type =} \StringTok{"l"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning in title(...): 'mbcsToSbcs'里转换'df_aqi$閸栨ぞ鍚�'出错：<e9>代替了
+## dot
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in title(...): 'mbcsToSbcs'里转换'df_aqi$閸栨ぞ鍚�'出错：<8d>代替了
+## dot
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in title(...): 'mbcsToSbcs'里转换'df_aqi$閸栨ぞ鍚�'出错：<96>代替了
+## dot
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in title(...): 'mbcsToSbcs'里转换'df_aqi$閸栨ぞ鍚�'出错：<e6>代替了
+## dot
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in title(...): 'mbcsToSbcs'里转换'df_aqi$閸栨ぞ鍚�'出错：<a4>代替了
+## dot
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in title(...): 'mbcsToSbcs'里转换'df_aqi$閸栨ぞ鍚�'出错：<be>代替了
+## dot
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in title(...): 'mbcsToSbcs'里转换'df_aqi$閸栨ぞ鍚�'出错：<e5>代替了
+## dot
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in title(...): 'mbcsToSbcs'里转换'df_aqi$閸栨ぞ鍚�'出错：<90>代替了
+## dot
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in title(...): 'mbcsToSbcs'里转换'df_aqi$閸栨ぞ鍚�'出错：<ab>代替了
+## dot
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ df_aqi}\OperatorTok{$}\NormalTok{Time, }\DataTypeTok{y =}\NormalTok{ df_aqi}\OperatorTok{$}\NormalTok{鍖椾含, }\DataTypeTok{type =} \StringTok{"b"}\NormalTok{, }\DataTypeTok{pch =} \DecValTok{16}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning in title(...): 'mbcsToSbcs'里转换'df_aqi$閸栨ぞ鍚�'出错：<e9>代替了
+## dot
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in title(...): 'mbcsToSbcs'里转换'df_aqi$閸栨ぞ鍚�'出错：<8d>代替了
+## dot
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in title(...): 'mbcsToSbcs'里转换'df_aqi$閸栨ぞ鍚�'出错：<96>代替了
+## dot
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in title(...): 'mbcsToSbcs'里转换'df_aqi$閸栨ぞ鍚�'出错：<e6>代替了
+## dot
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in title(...): 'mbcsToSbcs'里转换'df_aqi$閸栨ぞ鍚�'出错：<a4>代替了
+## dot
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in title(...): 'mbcsToSbcs'里转换'df_aqi$閸栨ぞ鍚�'出错：<be>代替了
+## dot
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in title(...): 'mbcsToSbcs'里转换'df_aqi$閸栨ぞ鍚�'出错：<e5>代替了
+## dot
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in title(...): 'mbcsToSbcs'里转换'df_aqi$閸栨ぞ鍚�'出错：<90>代替了
+## dot
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in title(...): 'mbcsToSbcs'里转换'df_aqi$閸栨ぞ鍚�'出错：<ab>代替了
+## dot
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ df_aqi}\OperatorTok{$}\NormalTok{Time, }\DataTypeTok{y =}\NormalTok{ df_aqi}\OperatorTok{$}\NormalTok{鍖椾含, }\DataTypeTok{type =} \StringTok{"b"}\NormalTok{, }\DataTypeTok{pch =} \DecValTok{16}\NormalTok{,}\DataTypeTok{col =} \StringTok{"red"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning in title(...): 'mbcsToSbcs'里转换'df_aqi$閸栨ぞ鍚�'出错：<e9>代替了
+## dot
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in title(...): 'mbcsToSbcs'里转换'df_aqi$閸栨ぞ鍚�'出错：<8d>代替了
+## dot
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in title(...): 'mbcsToSbcs'里转换'df_aqi$閸栨ぞ鍚�'出错：<96>代替了
+## dot
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in title(...): 'mbcsToSbcs'里转换'df_aqi$閸栨ぞ鍚�'出错：<e6>代替了
+## dot
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in title(...): 'mbcsToSbcs'里转换'df_aqi$閸栨ぞ鍚�'出错：<a4>代替了
+## dot
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in title(...): 'mbcsToSbcs'里转换'df_aqi$閸栨ぞ鍚�'出错：<be>代替了
+## dot
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in title(...): 'mbcsToSbcs'里转换'df_aqi$閸栨ぞ鍚�'出错：<e5>代替了
+## dot
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in title(...): 'mbcsToSbcs'里转换'df_aqi$閸栨ぞ鍚�'出错：<90>代替了
+## dot
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in title(...): 'mbcsToSbcs'里转换'df_aqi$閸栨ぞ鍚�'出错：<ab>代替了
+## dot
+\end{verbatim}
+
+\includegraphics{bookdown-demo_files/figure-latex/unnamed-chunk-23-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mfrow =} \KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
 
 Here is a review of existing methods.
 

@@ -38,6 +38,8 @@ This course is also for Linux people.
 If you work with spatiotemporal data such as vectors (shapefiles) and raster or gridded (.Tiff, NetCDF).
 As I never saw anyone using other than Windows and occasionally some Mac, I`m not expecting any change to /etc/sources.list to keep updated R or anything.
 
+I took some examples from R Programming for Data Science (Roger D. Peng, 2016) https://bookdown.org/rdpeng/rprogdatascience/
+
 
 ```{r include=FALSE}
 # automatically create a bib database for R packages
