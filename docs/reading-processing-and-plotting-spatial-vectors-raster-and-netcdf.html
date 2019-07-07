@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 6 Reading, processing and plotting spatial vectors, raster and NetCDF | R：从基础到不太基础 - R: from basics to not so basic</title>
+  <meta name="description" content="From really basics to not so basic R course." />
+  <meta name="generator" content="bookdown 0.11 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 6 Reading, processing and plotting spatial vectors, raster and NetCDF | R：从基础到不太基础 - R: from basics to not so basic" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="From really basics to not so basic R course." />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 6 Reading, processing and plotting spatial vectors, raster and NetCDF | R：从基础到不太基础 - R: from basics to not so basic" />
+  
+  <meta name="twitter:description" content="From really basics to not so basic R course." />
+  
+
+<meta name="author" content="Sergio Ibarra-Espinosa" />
+
+
+<meta name="date" content="2019-07-07" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="processing-data-frames.html">
+<link rel="next" href="references.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Notes</a></li>
+<li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Introduction</a><ul>
+<li class="chapter" data-level="2.1" data-path="intro.html"><a href="intro.html#install-r"><i class="fa fa-check"></i><b>2.1</b> Install R</a></li>
+<li class="chapter" data-level="2.2" data-path="intro.html"><a href="intro.html#install-rstudio"><i class="fa fa-check"></i><b>2.2</b> Install Rstudio</a></li>
+<li class="chapter" data-level="2.3" data-path="intro.html"><a href="intro.html#install-packages"><i class="fa fa-check"></i><b>2.3</b> Install packages</a></li>
+<li class="chapter" data-level="2.4" data-path="intro.html"><a href="intro.html#get-the-data"><i class="fa fa-check"></i><b>2.4</b> Get the data</a></li>
+<li class="chapter" data-level="2.5" data-path="intro.html"><a href="intro.html#learn-more"><i class="fa fa-check"></i><b>2.5</b> Learn more</a></li>
+<li class="chapter" data-level="2.6" data-path="intro.html"><a href="intro.html#install-vscode-optional"><i class="fa fa-check"></i><b>2.6</b> Install VSCODE (optional)</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="vectors-and-spreadsheets.html"><a href="vectors-and-spreadsheets.html"><i class="fa fa-check"></i><b>3</b> Vectors and Spreadsheets</a><ul>
+<li class="chapter" data-level="3.1" data-path="vectors-and-spreadsheets.html"><a href="vectors-and-spreadsheets.html#excel---excel-my-old-friend"><i class="fa fa-check"></i><b>3.1</b> Excel，我的老朋友 - Excel, my old friend</a></li>
+<li class="chapter" data-level="3.2" data-path="vectors-and-spreadsheets.html"><a href="vectors-and-spreadsheets.html#inputs"><i class="fa fa-check"></i><b>3.2</b> 输入 - Inputs</a></li>
+<li class="chapter" data-level="3.3" data-path="vectors-and-spreadsheets.html"><a href="vectors-and-spreadsheets.html#objects"><i class="fa fa-check"></i><b>3.3</b> 对象 - Objects</a></li>
+<li class="chapter" data-level="3.4" data-path="vectors-and-spreadsheets.html"><a href="vectors-and-spreadsheets.html#vectors"><i class="fa fa-check"></i><b>3.4</b> Vectors</a></li>
+<li class="chapter" data-level="3.5" data-path="vectors-and-spreadsheets.html"><a href="vectors-and-spreadsheets.html#mixing-objects"><i class="fa fa-check"></i><b>3.5</b> 混合对象 - Mixing objects</a><ul>
+<li class="chapter" data-level="3.5.1" data-path="vectors-and-spreadsheets.html"><a href="vectors-and-spreadsheets.html#excel---reading-excel"><i class="fa fa-check"></i><b>3.5.1</b> 阅读Excel - Reading Excel</a></li>
+<li class="chapter" data-level="3.5.2" data-path="vectors-and-spreadsheets.html"><a href="vectors-and-spreadsheets.html#using-base"><i class="fa fa-check"></i><b>3.5.2</b> 使用基础 - Using base</a></li>
+<li class="chapter" data-level="3.5.3" data-path="vectors-and-spreadsheets.html"><a href="vectors-and-spreadsheets.html#data.table---using-data.table"><i class="fa fa-check"></i><b>3.5.3</b> 使用data.table - Using data.table</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="vectors-and-spreadsheets.html"><a href="vectors-and-spreadsheets.html#plots"><i class="fa fa-check"></i><b>3.6</b> Plots</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="methods.html"><a href="methods.html"><i class="fa fa-check"></i><b>4</b> Methods</a></li>
+<li class="chapter" data-level="5" data-path="processing-data-frames.html"><a href="processing-data-frames.html"><i class="fa fa-check"></i><b>5</b> Processing data.frames</a><ul>
+<li class="chapter" data-level="5.1" data-path="processing-data-frames.html"><a href="processing-data-frames.html#example-one"><i class="fa fa-check"></i><b>5.1</b> Example one</a></li>
+<li class="chapter" data-level="5.2" data-path="processing-data-frames.html"><a href="processing-data-frames.html#example-two"><i class="fa fa-check"></i><b>5.2</b> Example two</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="reading-processing-and-plotting-spatial-vectors-raster-and-netcdf.html"><a href="reading-processing-and-plotting-spatial-vectors-raster-and-netcdf.html"><i class="fa fa-check"></i><b>6</b> Reading, processing and plotting spatial vectors, raster and NetCDF</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R：从基础到不太基础 - R: from basics to not so basic</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="reading-processing-and-plotting-spatial-vectors-raster-and-netcdf" class="section level1">
+<h1><span class="header-section-number">Chapter 6</span> Reading, processing and plotting spatial vectors, raster and NetCDF</h1>
+<p>We have finished a nice book.</p>
+
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="processing-data-frames.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/05-summary.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": ["bookdown-demo.pdf", "bookdown-demo.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
